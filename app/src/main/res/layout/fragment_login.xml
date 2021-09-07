@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- LinearLayout is used here because we do not have anything fancy.
+         All widgets are shown linearly -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/global_layout_padding"
+        tools:context=".login.LoginFragment">
+
+        <TextView
+            android:id="@+id/textview_email"
+            style="@style/subheading"
+            android:text="@string/email" />
+
+        <EditText
+            android:id="@+id/edittext_email"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/edittext_margin_bottom"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:minHeight="@dimen/min_height"
+            tools:text="hello@google.com" />
+
+        <TextView
+            android:id="@+id/textview_password"
+            style="@style/subheading"
+            android:text="@string/password" />
+
+        <EditText
+            android:id="@+id/edittext_password"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/edittext_margin_bottom"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:minHeight="@dimen/min_height"
+            tools:text="123456" />
+
+        <Button
+            android:id="@+id/button_existinglogin"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_existing_account"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/button_newlogin"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_a_new_login" />
+    </LinearLayout>
+
+</layout>
