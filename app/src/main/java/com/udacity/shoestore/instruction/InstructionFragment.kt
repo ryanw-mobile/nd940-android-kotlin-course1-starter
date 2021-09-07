@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentInstructionBinding
 
 class InstructionFragment : Fragment() {
@@ -21,6 +23,13 @@ class InstructionFragment : Fragment() {
         _binding = FragmentInstructionBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this).get(InstructionViewModel::class.java)
+        binding.instructionViewModel = viewModel
+
+        viewModel.eventShouldGoShoeList.observe(viewLifecycleOwner, { shouldGoShoeList ->
+            if (shouldGoShoeList) {
+                onNavigateToShoeList()
+            }
+        })
 
         return binding.root
     }
@@ -28,5 +37,10 @@ class InstructionFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onNavigateToShoeList() {
+        findNavController().navigate(R.id.action_instructionFragment_to_shoeListFragment)
+        viewModel.onGoShoeListComplete()
     }
 }

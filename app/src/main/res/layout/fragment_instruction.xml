@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="@{()->instructionViewModel.onGoShoeList()}"
             android:text="@string/shoe_list"
             android:textColor="@android:color/black"
             app:drawableEndCompat="@drawable/ic_baseline_play_arrow_24" />
