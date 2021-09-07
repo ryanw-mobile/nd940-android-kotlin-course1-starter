@@ -22,8 +22,7 @@ class LoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {
