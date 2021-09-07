@@ -23,4 +23,8 @@
         <item name="android:textColor">@color/primaryDarkColor</item>
     </style>
 
+    <style name="headline4" parent="@style/TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+    </style>
+
 </resources>
