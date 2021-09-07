@@ -5,16 +5,20 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.udacity.shoestore.MainViewModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
+import com.udacity.shoestore.models.Shoe
 
 class ShoeDetailFragment : Fragment() {
 
     private var _binding: FragmentShoeDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ShoeDetailViewModel
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +34,9 @@ class ShoeDetailFragment : Fragment() {
                 onNavigateToShoeList()
             }
         })
-        
+
+        binding.saveButton.setOnClickListener { saveShoe() }
+
         // Additional feature: click on black space to close keyboard
         binding.shoedetailConstraintlayout.setOnClickListener {
             val inputMethodManager =
@@ -55,5 +61,21 @@ class ShoeDetailFragment : Fragment() {
     private fun onNavigateToShoeList() {
         findNavController().navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
         viewModel.onGoShoeListComplete()
+    }
+
+    private fun saveShoe() {
+        // Retrieve the values from the XML and pass it to the view model
+        // as in this project we do not perform form validation,
+        // if size is empty we put zero
+        val shoeSizeString = binding.shoesizeEdittext.text.toString()
+
+        val shoe = Shoe(
+            binding.shoenameEdittext.text.toString(),
+            if (shoeSizeString.isEmpty()) 0.0 else shoeSizeString.toDouble(),
+            binding.companyEdittext.text.toString(),
+            binding.descriptionEdittext.text.toString()
+        )
+        mainViewModel.insertShoe(shoe)
+        viewModel.onGoShoeList()
     }
 }
