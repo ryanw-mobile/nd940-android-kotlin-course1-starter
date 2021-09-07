@@ -7,12 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.ActivityMainBinding
 import timber.log.Timber
-import java.util.zip.Inflater
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         setupNavigation()
         Timber.plant(Timber.DebugTree())
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -43,7 +39,17 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation() {
         val navController = findNavController(R.id.nav_host_fragment)
         setSupportActionBar(binding.toolbar)
-        val appBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
+
+        // To disable back button we set all but shoe details screen as top-level destination
+        val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.loginFragment,
+            R.id.welcomeFragment,
+            R.id.instructionFragment,
+            R.id.shoeListFragment
+        ).build()
+
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             // Show the destination label as upper case
             binding.toolbar.title = destination.label.toString().uppercase()
