@@ -26,6 +26,14 @@ class ShoeListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
         binding.shoeListViewModel = viewModel
 
+        // The fab button will call the ViewModel method and trigger this directly
+        viewModel.eventShouldGoShoeDetailScreen.observe(viewLifecycleOwner,
+            { shouldGoDetailScreen ->
+                if (shouldGoDetailScreen) {
+                    onNavigateToShoeDetail()
+                }
+            })
+
         viewModel.eventShouldGoLoginScreen.observe(viewLifecycleOwner,
             { shouldGoLoginScreen ->
                 if (shouldGoLoginScreen) {
@@ -50,6 +58,11 @@ class ShoeListFragment : Fragment() {
             return true;
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun onNavigateToShoeDetail() {
+        findNavController().navigate(R.id.action_shoeListFragment_to_shoeDetailFragment)
+        viewModel.onGoShoeDetailScreenComplete()
     }
 
     private fun onNavigateToLogin() {
