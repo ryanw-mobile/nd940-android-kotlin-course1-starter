@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : Fragment() {
@@ -25,6 +27,15 @@ class WelcomeFragment : Fragment() {
         _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this).get(WelcomeViewModel::class.java)
+        binding.welcomeViewModel = viewModel
+
+        viewModel.eventShouldGoWelcomeScreen.observe(
+            viewLifecycleOwner,
+            { shouldGoWelcomeScreen ->
+                if (shouldGoWelcomeScreen) {
+                    onNavigateToInstructionScreen()
+                }
+            })
 
         return binding.root
     }
@@ -32,5 +43,10 @@ class WelcomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onNavigateToInstructionScreen() {
+        findNavController().navigate(R.id.action_welcomeFragment_to_instructionFragment)
+        viewModel.onGoInstructionScreenComplete()
     }
 }

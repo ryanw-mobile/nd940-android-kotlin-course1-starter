@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".welcome.WelcomeFragment">
+
+    <data>
+
+        <variable
+            name="welcomeViewModel"
+            type="com.udacity.shoestore.welcome.WelcomeViewModel" />
+    </data>
 
     <!-- LinearLayout is used because no complex layout is required -->
     <LinearLayout
@@ -9,8 +17,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="@dimen/global_layout_padding"
-        tools:context=".welcome.WelcomeFragment">
+        android:padding="@dimen/global_layout_padding">
 
         <TextView
             style="@style/headline4"
@@ -36,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="@{()->welcomeViewModel.onGoInstructionScreen()}"
             android:text="@string/instructions"
             android:textColor="@android:color/black"
             app:drawableEndCompat="@drawable/ic_baseline_play_arrow_24" />
