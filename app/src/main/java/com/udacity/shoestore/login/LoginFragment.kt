@@ -1,14 +1,13 @@
 package com.udacity.shoestore.login
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
+
 
 class LoginFragment : Fragment() {
 
@@ -31,6 +30,7 @@ class LoginFragment : Fragment() {
 
         _binding!!.loginViewModel = viewModel
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -38,7 +38,13 @@ class LoginFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    
+
+    // Logout menu is not showing on this screen
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
+    }
+
     private fun onNavigateToWelcomeScreen() {
         findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
         viewModel.onGoWelcomeScreenComplete()

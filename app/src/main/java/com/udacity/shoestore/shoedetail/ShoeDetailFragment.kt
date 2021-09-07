@@ -1,9 +1,7 @@
 package com.udacity.shoestore.shoedetail
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
@@ -23,11 +21,18 @@ class ShoeDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
         binding.shoeDetailViewModel = viewModel
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // Logout menu is not showing on this screen
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
     }
 }
