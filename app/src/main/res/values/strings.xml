@@ -5,7 +5,7 @@
     <string name="login">LOGIN</string>
     <string name="login_existing_account">Log in with an existing account</string>
     <string name="create_a_new_login">Create a new login</string>
-    <string name="welcome_text">This is a fake Shoe Store app. This welcome screen and the following instruction screen will show only once until you log out and log in again. Please read carefully to avoid disappointment!</string>
+    <string name="welcome_text">This is a demo Shoe Store app. This welcome screen and the following instruction screen will show only once until you log out and log in again. Please read carefully to avoid disappointment!</string>
     <string name="welcome">Welcome</string>
     <string name="instructions">INSTRUCTIONS</string>
     <string name="instruction_text">The shoe listing page will show the list of shoes and show a button for adding a new shoe, while the detail page will be for adding a shoe entry.\n\nAll entries will be saved only as long as the app is running.</string>
