@@ -1,7 +1,9 @@
 package com.udacity.shoestore.login
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +27,12 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.linearlayoutLogin.setOnClickListener {
+            val inputMethodManager =
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
+        }
 
         viewModel.eventShouldGoWelcomeScreen.observe(viewLifecycleOwner, Observer { shouldGo ->
             if (shouldGo) {

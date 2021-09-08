@@ -13,6 +13,7 @@
     <!-- LinearLayout is used here because we do not have anything fancy.
          All widgets are shown linearly -->
     <LinearLayout
+        android:id="@+id/linearlayout_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
