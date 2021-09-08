@@ -22,7 +22,7 @@ class MainViewModel : ViewModel() {
             newlist = mutableListOf()
         }
         newlist.add(shoe)
-        _shoeList.value = newlist!!
+        _shoeList.value = newlist
     }
 
     fun clear() {

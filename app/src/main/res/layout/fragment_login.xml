@@ -3,13 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".login.LoginFragment">
 
-    <data>
-
-        <variable
-            name="loginViewModel"
-            type="com.udacity.shoestore.login.LoginViewModel" />
-    </data>
-
     <!-- LinearLayout is used here because we do not have anything fancy.
          All widgets are shown linearly -->
     <LinearLayout
@@ -57,7 +50,6 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()->loginViewModel.onExistingLogin()}"
             android:text="@string/login_existing_account"
             android:textColor="@android:color/black" />
 
@@ -66,7 +58,6 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()->loginViewModel.onCreateNewLogin()}"
             android:text="@string/create_a_new_login" />
     </LinearLayout>
 

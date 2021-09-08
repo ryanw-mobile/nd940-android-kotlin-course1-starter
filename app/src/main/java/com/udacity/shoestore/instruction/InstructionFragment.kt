@@ -2,33 +2,24 @@ package com.udacity.shoestore.instruction
 
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentInstructionBinding
 
 class InstructionFragment : Fragment() {
 
-    private var _binding: FragmentInstructionBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var viewModel: InstructionViewModel
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInstructionBinding.inflate(inflater, container, false)
-
-        viewModel = ViewModelProvider(this).get(InstructionViewModel::class.java)
-        binding.instructionViewModel = viewModel
-        binding.lifecycleOwner = this
-
-        viewModel.eventShouldGoShoeList.observe(viewLifecycleOwner, { shouldGoShoeList ->
-            if (shouldGoShoeList) {
-                onNavigateToShoeList()
-            }
-        })
+        // Inflate the layout for this fragment
+        val binding = DataBindingUtil.inflate<FragmentInstructionBinding>(
+            inflater, R.layout.fragment_instruction, container, false
+        )
+        binding.buttonInstructions.setOnClickListener {
+            onNavigateToShoeList()
+        }
 
         setHasOptionsMenu(true)
         return binding.root
@@ -42,6 +33,5 @@ class InstructionFragment : Fragment() {
 
     private fun onNavigateToShoeList() {
         findNavController().navigate(R.id.action_instructionFragment_to_shoeListFragment)
-        viewModel.onGoShoeListComplete()
     }
 }

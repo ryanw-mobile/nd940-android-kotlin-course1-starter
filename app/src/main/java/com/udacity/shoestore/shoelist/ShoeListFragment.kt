@@ -6,9 +6,9 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.MainViewModel
 import com.udacity.shoestore.R
@@ -17,35 +17,20 @@ import com.udacity.shoestore.models.Shoe
 
 class ShoeListFragment : Fragment() {
 
-    private var _binding: FragmentShoeListBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var viewModel: ShoeListViewModel
     private val mainViewModel: MainViewModel by activityViewModels()
+    lateinit var binding: FragmentShoeListBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentShoeListBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate<FragmentShoeListBinding>(
+            inflater, R.layout.fragment_shoe_list, container, false
+        )
 
-        viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
-        binding.shoeListViewModel = viewModel
-        binding.lifecycleOwner = this
-
-        // The fab button will call the ViewModel method and trigger this directly
-        viewModel.eventShouldGoShoeDetailScreen.observe(viewLifecycleOwner,
-            { shouldGoDetailScreen ->
-                if (shouldGoDetailScreen) {
-                    onNavigateToShoeDetail()
-                }
-            })
-
-        viewModel.eventShouldGoLoginScreen.observe(viewLifecycleOwner,
-            { shouldGoLoginScreen ->
-                if (shouldGoLoginScreen) {
-                    onNavigateToLogin()
-                }
-            })
+        binding.shoelistFab.setOnClickListener {
+            onNavigateToShoeDetail()
+        }
 
         mainViewModel.shoeList.observe(viewLifecycleOwner, {
             refreshList(it)
@@ -59,7 +44,7 @@ class ShoeListFragment : Fragment() {
     // This can make use of the ViewModel and navigation
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.logout) {
-            viewModel.logout()
+            onNavigateToLogin()
             return true;
         }
         return super.onOptionsItemSelected(item)
@@ -67,14 +52,12 @@ class ShoeListFragment : Fragment() {
 
     private fun onNavigateToShoeDetail() {
         findNavController().navigate(R.id.action_shoeListFragment_to_shoeDetailFragment)
-        viewModel.onGoShoeDetailScreenComplete()
     }
 
     private fun onNavigateToLogin() {
         // Clear shoe list first
         mainViewModel.clear()
         findNavController().navigate(R.id.action_shoeListFragment_to_loginFragment)
-        viewModel.onGoLoginScreenComplete()
     }
 
     /**
