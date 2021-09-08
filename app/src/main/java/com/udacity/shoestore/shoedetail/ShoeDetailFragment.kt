@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.MainViewModel
-import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
 import com.udacity.shoestore.models.Shoe
 
@@ -55,7 +54,8 @@ class ShoeDetailFragment : Fragment() {
     }
 
     private fun onNavigateToShoeList() {
-        findNavController().navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
+        // We could use navigate but calling navigateUp will always back to the previous screen
+        findNavController().navigateUp()
         viewModel.onGoShoeListComplete()
     }
 
