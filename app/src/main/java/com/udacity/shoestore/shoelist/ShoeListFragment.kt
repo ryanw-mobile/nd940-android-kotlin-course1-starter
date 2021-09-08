@@ -25,6 +25,7 @@ class ShoeListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
         binding.shoeListViewModel = viewModel
+        binding.lifecycleOwner = this
 
         // The fab button will call the ViewModel method and trigger this directly
         viewModel.eventShouldGoShoeDetailScreen.observe(viewLifecycleOwner,
@@ -43,11 +44,6 @@ class ShoeListFragment : Fragment() {
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     // Since only on this screen we would show the menu, the event is handled here

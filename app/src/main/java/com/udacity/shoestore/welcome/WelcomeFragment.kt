@@ -26,6 +26,7 @@ class WelcomeFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(WelcomeViewModel::class.java)
         binding.welcomeViewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.eventShouldGoWelcomeScreen.observe(
             viewLifecycleOwner,
@@ -37,11 +38,6 @@ class WelcomeFragment : Fragment() {
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     // Logout menu is not showing on this screen

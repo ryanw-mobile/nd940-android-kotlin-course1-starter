@@ -28,6 +28,7 @@ class ShoeDetailFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
         binding.shoeDetailViewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.eventShouldGoShoeList.observe(viewLifecycleOwner, { shouldGoShoeList ->
             if (shouldGoShoeList) {
@@ -45,11 +46,6 @@ class ShoeDetailFragment : Fragment() {
         }
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     // Logout menu is not showing on this screen
