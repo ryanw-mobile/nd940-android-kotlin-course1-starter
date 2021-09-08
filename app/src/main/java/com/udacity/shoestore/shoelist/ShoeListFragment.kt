@@ -71,6 +71,8 @@ class ShoeListFragment : Fragment() {
     }
 
     private fun onNavigateToLogin() {
+        // Clear shoe list first
+        mainViewModel.clear()
         findNavController().navigate(R.id.action_shoeListFragment_to_loginFragment)
         viewModel.onGoLoginScreenComplete()
     }

@@ -25,4 +25,8 @@ class MainViewModel : ViewModel() {
         _shoeList.value = newlist!!
     }
 
+    fun clear() {
+        _shoeList.value = mutableListOf()
+    }
+
 }
