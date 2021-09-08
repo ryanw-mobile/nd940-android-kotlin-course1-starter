@@ -12,6 +12,7 @@
             type="com.udacity.shoestore.shoedetail.ShoeDetailViewModel" />
     </data>
 
+    <!-- This screen has a complex layout which ConstraintLayout should be used -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/shoedetail_constraintlayout"
         android:layout_width="match_parent"
