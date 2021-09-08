@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- We have no complex layout requirements, so just showing the data vertically -->
+
+    <TextView
+        android:id="@+id/listitem_shoename"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_spacing"
+        android:layout_marginEnd="@dimen/default_spacing"
+        tools:text="shoe name" />
+
+    <TextView
+        android:id="@+id/listitem_company"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_spacing"
+        android:layout_marginEnd="@dimen/default_spacing"
+        tools:text="company" />
+
+    <TextView
+        android:id="@+id/listitem_shoesize"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_spacing"
+        android:layout_marginEnd="@dimen/default_spacing"
+        tools:text="shoe size" />
+
+    <TextView
+        android:id="@+id/listitem_description"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_spacing"
+        android:layout_marginEnd="@dimen/default_spacing"
+        tools:text="description" />
+
+    <View style="@style/divider" />
+
+</LinearLayout>

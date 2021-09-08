@@ -19,4 +19,9 @@
     <string name="company">Company</string>
     <string name="shoe_size">Shoe Size</string>
     <string name="description">Description</string>
+    <string name="listitem_shoe_name">Shoe name: %s</string>
+    <string name="listitem_company">Company: %s</string>
+    <string name="listitem_shoe_size">Size: %.2f</string>
+    <string name="listitem_description">Description: %s</string>
+
 </resources>
